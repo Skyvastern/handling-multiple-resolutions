@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://AnchorsAndMargins/Assets/Tiles/spritesheet_ground.png" type="Texture" id=1]
+[ext_resource path="res://AnchorsAndMargins/Scenes/Common/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://AnchorsAndMargins/Scenes/Solution/DialogBoxSolution.tscn" type="PackedScene" id=3]
+[ext_resource path="res://AnchorsAndMargins/Assets/UI/hudHeart_full.png" type="Texture" id=4]
+[ext_resource path="res://AnchorsAndMargins/Assets/UI/hudKey_blue.png" type="Texture" id=5]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "spritesheet_ground.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 128, 128, 128 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="Solution" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 2 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 254, 262 )
+dialog_anim_path = NodePath("../UILayer/DialogBoxSolution/AnimationPlayer")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BG" type="ColorRect" parent="BackgroundLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.643137, 0.784314, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="DialogBoxSolution" parent="UILayer" instance=ExtResource( 3 )]
+
+[node name="Health" type="TextureRect" parent="UILayer"]
+margin_left = 10.0
+margin_right = 110.0
+margin_bottom = 100.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HudKeyBlue" type="TextureRect" parent="UILayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -110.0
+margin_right = -10.0
+margin_bottom = 100.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
